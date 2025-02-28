@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePoiDto } from './dto/create-poi.dto';
 import { UpdatePoiDto } from './dto/update-poi.dto';
-import { Poi } from './entities/poi.entity';
+import { Poi, Pump, FuelProduct } from './entities/poi.entity';
 
 @Injectable()
 export class PoiService {
@@ -17,11 +17,25 @@ export class PoiService {
     return this.poiRepository.save(poi);
   }
 
-  findAll() {
-    return this.poiRepository.find();
+  // findAll() {
+  //   return this.poiRepository.find();
+  // }
+
+  async findAll(includePumps: boolean, includeFuel: boolean): Promise<any> {
+    let query = this.poiRepository.createQueryBuilder('poi');
+
+    if (includePumps) {
+      query = query.leftJoinAndSelect('poi.pumps', 'pumps');
+
+      if (includeFuel) {
+        query = query.leftJoinAndSelect('pumps.fuelProducts', 'fuelProducts');
+      }
+    }
+
+    return query.getMany();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.poiRepository.findOne({
       where: { id },  // Search criteria is provided via "where"
     });

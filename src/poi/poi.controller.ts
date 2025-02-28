@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/common';
 import { PoiService } from './poi.service';
 import { CreatePoiDto } from './dto/create-poi.dto';
 import { UpdatePoiDto } from './dto/update-poi.dto';
@@ -12,13 +12,21 @@ export class PoiController {
     return this.poiService.create(createPoiDto);
   }
 
+  // @Get()
+  // findAll() {
+  //   return this.poiService.findAll();
+  // }
+
   @Get()
-  findAll() {
-    return this.poiService.findAll();
+  async findAll1(@Query('includePumps') includePumps: string, @Query('includeFuel') includeFuel: string) {
+    return this.poiService.findAll(
+      includePumps === 'true',
+      includeFuel === 'true',
+    );
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.poiService.findOne(id);
   }
 

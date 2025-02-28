@@ -7,7 +7,7 @@ import { PoiModule } from './poi/poi.module'; // Import PoiModule if you've set 
 import { ConfigModule } from '@nestjs/config'; // Optional: For env variables
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Poi } from './poi/entities/poi.entity'; // Assuming you're using TypeORM (can change based on your ORM choice)
+import { Poi, Pump, FuelProduct } from './poi/entities/poi.entity'; // Assuming you're using TypeORM (can change based on your ORM choice)
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { Poi } from './poi/entities/poi.entity'; // Assuming you're using TypeOR
       username: process.env.DB_USERNAME,  // Database username
       password: process.env.DB_PASSWORD,  // Database password
       database: process.env.DB_NAME,  // Database name
-      entities: [Poi],  // Register entities
+      entities: [Poi, Pump, FuelProduct],  // Register entities
       synchronize: true,  // Auto create DB tables (for dev only, set to false in production)
     }),
     AuthModule,             // Authentication module
