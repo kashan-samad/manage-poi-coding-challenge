@@ -1,10 +1,5 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToMany,
-} from 'typeorm';
-import { OpeningHours } from '../config/opening-hours.config';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { OpeningHours } from '../config/openingHours.config';
 import { Pump } from './pump.entity';
 
 @Entity()

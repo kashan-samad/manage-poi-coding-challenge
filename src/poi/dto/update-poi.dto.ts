@@ -5,7 +5,7 @@ import {
   IsObject,
   IsOptional,
 } from 'class-validator';
-import { OpeningHours } from '../config/opening-hours.config';
+import { OpeningHours } from '../config/openingHours.config';
 
 export class UpdatePoiDto {
   @IsEnum(['ONLINE', 'OFFLINE'])

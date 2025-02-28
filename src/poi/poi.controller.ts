@@ -26,13 +26,13 @@ export class PoiController {
     @Query('page') page: string = '1',
     @Query('limit') limit: string = '10',
     @Query('includePumps') includePumps: string,
-    @Query('includeFuel') includeFuel: string
+    @Query('includeFuel') includeFuel: string,
   ) {
     return this.poiService.findAll(
       parseInt(page),
       parseInt(limit),
       includePumps === 'true',
-      includeFuel === 'true'
+      includeFuel === 'true',
     );
   }
 

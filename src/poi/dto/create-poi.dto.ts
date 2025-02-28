@@ -6,7 +6,7 @@ import {
   IsArray,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { OpeningHours } from '../config/opening-hours.config';
+import { OpeningHours } from '../config/openingHours.config';
 
 export class CreatePoiDto {
   @IsEnum(['ONLINE', 'OFFLINE'])

@@ -24,4 +24,3 @@ export class Pump {
   @ManyToOne(() => Poi, (poi) => poi.pumps, { onDelete: 'CASCADE' })
   poi: Poi;
 }
-

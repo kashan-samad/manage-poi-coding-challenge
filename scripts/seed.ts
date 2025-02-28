@@ -2,7 +2,7 @@ import { DataSource } from 'typeorm';
 import { Poi } from './../src/poi/entities/poi.entity';
 import { Pump } from './../src/poi/entities/pump.entity';
 import { FuelProduct } from './../src/poi/entities/fuel-product.entity';
-import { OpeningHours } from './../src/poi/config/opening-hours.config';
+import { OpeningHours } from '../src/poi/config/openingHours.config';
 
 const dataSource = new DataSource({
   type: 'postgres',

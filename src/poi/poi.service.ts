@@ -16,8 +16,13 @@ export class PoiService {
     const poi = this.poiRepository.create(createPoiDto);
     return this.poiRepository.save(poi);
   }
-  
-  async findAll(page: number, limit: number, includePumps: boolean, includeFuel: boolean) {
+
+  async findAll(
+    page: number,
+    limit: number,
+    includePumps: boolean,
+    includeFuel: boolean,
+  ) {
     const skip = (page - 1) * limit;
 
     let query = this.poiRepository.createQueryBuilder('poi');
