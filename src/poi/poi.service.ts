@@ -9,7 +9,7 @@ import { Poi } from './entities/poi.entity';
 export class PoiService {
   constructor(
     @InjectRepository(Poi)
-    private poiRepository: Repository<Poi>, // Inject TypeORM repository
+    private poiRepository: Repository<Poi>,
   ) {}
 
   create(createPoiDto: CreatePoiDto) {
@@ -48,7 +48,7 @@ export class PoiService {
 
   findOne(id: string) {
     return this.poiRepository.findOne({
-      where: { id }, // Search criteria is provided via "where"
+      where: { id },
     });
   }
 

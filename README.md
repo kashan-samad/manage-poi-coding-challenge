@@ -1,99 +1,102 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Points of Interest (POI) Management API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project implements a CRUD service to manage Points of Interest (POIs), specifically focusing on petrol stations. It includes details such as operational status, location, fuel pumps, and products available.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
+- Create, Read, Update, and Delete POIs.
+- Manage petrol station details such as status, location, pumps, and opening hours.
 
-## Description
+## Technologies Used
+- **NestJS**: A progressive Node.js framework.
+- **TypeORM**: ORM for working with databases.
+- **PostgreSQL**: Database for storing POI data.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Prerequisites
+- Node.js (v20 or higher)
+- PostgreSQL
+- Postman (for testing the API)
 
-## Project setup
+## Setup Instructions
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/kashan-samad/manage-poi-coding-challenge.git
+cd manage-poi-coding-challenge
+```
+
+### 2. Install dependencies
 
 ```bash
 $ npm install
 ```
 
-## Compile and run the project
+### 3. Configure Environment Variables
+Create a .env file in the root of the project and configure the database connection settings:
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```
+DB_HOST=localhost
+DB_PORT=5432
+DATABASE_USERNAME=your-db-username
+DATABASE_PASSWORD=your-db-password
+DATABASE_NAME=poi
 ```
 
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+### 4. Database Setup
+Make sure PostgreSQL is installed and running. Run the following commands to set up the database:
+```
+psql -U postgres
+CREATE DATABASE poi;
 ```
 
-## Deployment
+### 5. Run Migrations (if applicable)
+If the project uses migrations, run:
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
+```
+npx ts-node scripts/seed.ts
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 6. Start the Application
+To start the application, run:
 
-## Resources
+```
+npm run start:dev
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+This will start the API on http://localhost:3000. You can now test the API using Postman.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### 7. Testing the API
+Import the Postman Collection `POI.postman_collection.json`:
+Import the collection into Postman.
+Make sure to configure any required environment variables (e.g., BASE_URL).
+Example Requests:
 
-## Support
+```
+Get All POIs: GET /poi
+Get Specific POIs: GET /poi/:id
+Create POI: POST /poi
+Update POI: PUT /poi/:id
+Delete POI: DELETE /poi/:id
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### License
+This project is licensed under the MIT License.
 
-## Stay in touch
+## Suggested Improvements and Architectural Considerations
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Tight coupling with petrol pumps
+The current schema is tightly coupled with petrol pumps. To make it more flexible for other POIs like cafes, pubs, etc., the schema can be redesigned in a more generic way to support different types of POIs.
 
-## License
+### API Endpoints
+Implement versioning from the beginning (e.g., /api/v1/poi) to handle updates without breaking existing clients.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Error Handling
+Standardize error responses across all endpoints. Use HTTP status codes correctly (e.g., 400 for bad requests, 404 for not found, 500 for internal server errors). This will provide better feedback to clients consuming the API.
+
+### Security Considerations
+The API currently lacks authentication and authorization. Implementing JWT-based authentication will secure sensitive endpoints (e.g., creating or deleting POIs). You can use a package like passport-jwt to manage authentication.
+
+### Logging and Monitoring
+Utilize a logging package like Winston to enable structured logging. Logs should capture metadata, including request IDs, timestamps, and user information (if authenticated), which will simplify debugging and tracking requests.
+
+### Scalability
+Implement caching strategies, such as Redis, to store frequently accessed data like POI details that remain unchanged. This can help reduce database load and improve response times.

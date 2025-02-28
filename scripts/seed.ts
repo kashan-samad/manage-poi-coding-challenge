@@ -1,3 +1,4 @@
+require('dotenv').config();
 import { DataSource } from 'typeorm';
 import { Poi } from './../src/poi/entities/poi.entity';
 import { Pump } from './../src/poi/entities/pump.entity';
@@ -6,11 +7,11 @@ import { OpeningHours } from '../src/poi/config/openingHours.config';
 
 const dataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost', // Change this if needed
-  port: 5432,
-  username: 'kashansamad',
-  password: 'newPassword',
-  database: 'poi',
+  host: process.env.DB_HOST || 'localhost',
+  port: +(process.env.DB_PORT || 5432),
+  username: process.env.DB_USERNAME || 'postgres',
+  password: process.env.DB_PASSWORD || 'password',
+  database: process.env.DB_NAME || 'poi',
   entities: [Poi, Pump, FuelProduct],
   synchronize: true, // Auto-create tables
 });

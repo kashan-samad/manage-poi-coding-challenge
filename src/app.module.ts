@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PoiModule } from './poi/poi.module'; // Import PoiModule if you've set it up
-import { ConfigModule } from '@nestjs/config'; // Optional: For env variables
+import { PoiModule } from './poi/poi.module';
+import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Poi } from './poi/entities/poi.entity';
@@ -11,21 +11,21 @@ import { FuelProduct } from './poi/entities/fuel-product.entity';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(), // Optional: Load environment variables
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'postgres', // Database type
-      host: process.env.DB_HOST, // Database host (use environment variables for safety)
-      port: parseInt(process.env.DB_PORT || '5432', 10), // Use fallback '5432' and parse it to int
-      username: process.env.DB_USERNAME, // Database username
-      password: process.env.DB_PASSWORD, // Database password
-      database: process.env.DB_NAME, // Database name
-      entities: [Poi, Pump, FuelProduct], // Register entities
-      synchronize: true, // Auto create DB tables (for dev only, set to false in production)
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT || '5432', 10),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      entities: [Poi, Pump, FuelProduct],
+      synchronize: true,
     }),
-    PoiModule, // Poi module (CRUD)
+    PoiModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'SECRET_KEY', // Using env var for JWT secret
-      signOptions: { expiresIn: '1h' }, // JWT expiration time
+      secret: process.env.JWT_SECRET || 'SECRET_KEY',
+      signOptions: { expiresIn: '1h' },
     }),
     PoiModule,
   ],
