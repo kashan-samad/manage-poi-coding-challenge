@@ -1,5 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+} from 'typeorm';
 import { OpeningHours } from '../config/opening-hours.config';
+import { Pump } from './pump.entity';
 
 @Entity()
 export class Poi {
@@ -29,34 +35,4 @@ export class Poi {
 
   @OneToMany(() => Pump, (pump) => pump.poi, { cascade: true })
   pumps: Pump[];
-}
-
-@Entity()
-export class Pump {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column({ type: 'varchar', length: 50 })
-  pumpName: string;
-
-  @OneToMany(() => FuelProduct, (fuelProduct) => fuelProduct.pump, { cascade: true })
-  fuelProducts: FuelProduct[];
-
-  @ManyToOne(() => Poi, (poi) => poi.pumps, { onDelete: 'CASCADE' })
-  poi: Poi;
-}
-
-@Entity()
-export class FuelProduct {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column({ type: 'varchar', length: 100 })
-  name: string;
-
-  @Column('jsonb')
-  prices: { [currency: string]: number }; // Example: { "EUR": 1.50, "USD": 1.60 }
-
-  @ManyToOne(() => Pump, (pump) => pump.fuelProducts, { onDelete: 'CASCADE' })
-  pump: Pump;
 }

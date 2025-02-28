@@ -1,4 +1,10 @@
-import { IsEnum, IsNotEmpty, IsString, IsUUID, IsObject, IsArray } from 'class-validator';
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsString,
+  IsObject,
+  IsArray,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 import { OpeningHours } from '../config/opening-hours.config';
 

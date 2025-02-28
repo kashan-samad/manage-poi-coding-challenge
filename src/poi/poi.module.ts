@@ -6,7 +6,7 @@ import { Poi } from './entities/poi.entity'; // Assuming you're using TypeORM (c
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Poi]),  // Register the poi entity here
+    TypeOrmModule.forFeature([Poi]), // Register the poi entity here
   ],
   controllers: [PoiController],
   providers: [PoiService],

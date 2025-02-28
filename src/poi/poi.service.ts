@@ -3,25 +3,23 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePoiDto } from './dto/create-poi.dto';
 import { UpdatePoiDto } from './dto/update-poi.dto';
-import { Poi, Pump, FuelProduct } from './entities/poi.entity';
+import { Poi } from './entities/poi.entity';
 
 @Injectable()
 export class PoiService {
   constructor(
     @InjectRepository(Poi)
-    private poiRepository: Repository<Poi>,  // Inject TypeORM repository
+    private poiRepository: Repository<Poi>, // Inject TypeORM repository
   ) {}
 
   create(createPoiDto: CreatePoiDto) {
     const poi = this.poiRepository.create(createPoiDto);
     return this.poiRepository.save(poi);
   }
+  
+  async findAll(page: number, limit: number, includePumps: boolean, includeFuel: boolean) {
+    const skip = (page - 1) * limit;
 
-  // findAll() {
-  //   return this.poiRepository.find();
-  // }
-
-  async findAll(includePumps: boolean, includeFuel: boolean): Promise<any> {
     let query = this.poiRepository.createQueryBuilder('poi');
 
     if (includePumps) {
@@ -32,12 +30,20 @@ export class PoiService {
       }
     }
 
-    return query.getMany();
+    const [data, total] = await query.skip(skip).take(limit).getManyAndCount();
+
+    return {
+      totalItems: total,
+      totalPages: Math.ceil(total / limit),
+      currentPage: page,
+      pageSize: limit,
+      data,
+    };
   }
 
   findOne(id: string) {
     return this.poiRepository.findOne({
-      where: { id },  // Search criteria is provided via "where"
+      where: { id }, // Search criteria is provided via "where"
     });
   }
 
