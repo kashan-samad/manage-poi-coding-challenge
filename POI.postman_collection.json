@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "866f968c-8a36-4108-876a-b4af757601c9",
+		"name": "POI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19554123"
+	},
+	"item": [
+		{
+			"name": "Poi",
+			"item": [
+				{
+					"name": "LIST Poi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/poi?page=2&limit=2&includePumps=true&includeFuel=true",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"poi"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "includePumps",
+									"value": "true"
+								},
+								{
+									"key": "includeFuel",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Poi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/poi/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"poi",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE Poi",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"street\": \"Hansaring\",\n    \"houseNumber\": \"58\",\n    \"zipCode\": \"50670\",\n    \"city\": \"Cologne\",\n    \"country\": \"Germany\",\n    \"status\": \"OFFLINE\",\n    \"openingHours\": \"CASE_TWO\",\n    \"pumps\": [\n        {\n            \"pumpName\": \"Pump 3\",\n            \"fuelProducts\": [\n                {\n                    \"name\": \"SUPER E10\",\n                    \"prices\": {\n                        \"EUR\": 1.50,\n                        \"USD\": 1.60\n                    }\n                },\n                {\n                    \"name\": \"Diesel\",\n                    \"prices\": {\n                        \"EUR\": 1.30,\n                        \"USD\": 1.40\n                    }\n                }\n            ]\n        },\n        {\n            \"pumpName\": \"Pump 4\",\n            \"fuelProducts\": [\n                {\n                    \"name\": \"SUPER 95\",\n                    \"prices\": {\n                        \"EUR\": 1.60,\n                        \"USD\": 1.70\n                    }\n                }\n            ]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/poi",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"poi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Poi",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"houseNumber\": \"55\",\n    \"street\": \"Hansaring\",\n    \"zipCode\": \"50670\",\n    \"city\": \"Cologne\",\n    \"country\": \"Germany\",\n    \"status\": \"OFFLINE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/poi/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"poi",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Poi",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/poi/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"poi",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}",
+					"host": [
+						"{{BASE_URL}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
